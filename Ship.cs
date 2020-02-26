@@ -9,34 +9,59 @@ namespace NavallBatlle4
 
         public bool ShipAlive { get; set; }
         public int ShipLenght { get; set; }
-        public bool IsEmpty { get; set; }
-
-        public enum ShipName { unknown, battleship, cruiser, destroyer, submarine };
-        public ShipName Name { get; set; }
-
-        public Ship(ShipName name)
+        public void ShipSet(int a, int b, string direction, Ship one, int[,] myMap)
         {
-            int shipLength = 0;
-            switch (name)
+            int count = 0;
+            if (myMap[a, b] == 0 && direction == "r")
             {
-                case ShipName.unknown:
-                case ShipName.submarine:
-                    shipLength = 1;
-                    break;
-                case ShipName.destroyer:
-                    shipLength = 2;
-                    break;
-                case ShipName.cruiser:
-                    shipLength = 3;
-                    break;
-                case ShipName.battleship:
-                    shipLength = 4;
-                    break;
+                for (int i = b; i < b + one.ShipLenght; i++)
+                {
+                    if (myMap[a, i] == 0)
+                    {
+                        count++;
+                    }
+
+                }
+                if (count == one.ShipLenght)
+                {
+                    for (int i = b; i < b + one.ShipLenght; i++)
+                    {
+                        myMap[a, i] = 1;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ship cannot be placed. Choose another coordinates or direction");
+                }
+                count = 0;
             }
-            this.ShipLenght = shipLength;
-            this.Name = name;
+            if (myMap[a, b] == 0 && direction == "d")
+            {
+                for (int i = a; i < a + one.ShipLenght; i++)
+                {
+                    if (myMap[i, b] == 0)
+                    {
+                        count++;
+                    }
+
+                }
+                if (count == one.ShipLenght)
+                {
+                    for (int i = a; i < a + one.ShipLenght; i++)
+                    {
+                        myMap[i, b] = 1;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ship cannot be placed. Choose another coordinates or direction");
+                }
+                count = 0;
+            }
+
+
         }
-        
+
     }
         
 }
