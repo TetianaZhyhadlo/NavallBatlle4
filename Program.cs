@@ -8,7 +8,6 @@ namespace NavallBatlle4
         {
             NameInput();
             Field map1 = new Field();
-            //map1.ShowMap(map1.MapCreation());
             Console.WriteLine("Please input ship length");
             Ship one = new Ship();
             one.ShipLenght = Convert.ToInt32(Console.ReadLine());
